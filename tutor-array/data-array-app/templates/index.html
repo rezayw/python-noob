@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Array Operations</h1>
+        
+        <div class="array-status">
+            <div class="array-display">
+                <h3>Current Array State:</h3>
+                <div class="array-values">
+                    <p><strong>Original Array:</strong> {{ results.original if results.original else "Empty" }}</p>
+                    <p><strong>Working Array:</strong> {{ results.current if results.current else "Empty" }}</p>
+                </div>
+            </div>
+        </div>
+
+        <form method="POST" class="array-form">
+            <div class="form-group">
+                <label for="array_data">Update Array (comma-separated numbers):</label>
+                <input type="text" id="array_data" name="array_data" 
+                       placeholder="e.g. 1,2,3,4,5">
+                <small>Leave empty to keep current array</small>
+            </div>
+
+            <div class="operations-panel">
+                <h3>Basic Operations:</h3>
+                <div class="operation-group">
+                    <button type="submit" name="get_first" class="btn operation-btn">Get First</button>
+                    <button type="submit" name="get_last" class="btn operation-btn">Get Last</button>
+                    <button type="submit" name="get_max" class="btn operation-btn">Get Max</button>
+                    <button type="submit" name="get_min" class="btn operation-btn">Get Min</button>
+                </div>
+
+                <h3>Filter Operations:</h3>
+                <div class="operation-group">
+                    <button type="submit" name="get_even" class="btn operation-btn">Get Even</button>
+                    <button type="submit" name="get_odd" class="btn operation-btn">Get Odd</button>
+                </div>
+
+                <h3>Array Slicing:</h3>
+                <div class="slice-group">
+                    <div class="slice-controls">
+                        <input type="number" name="start" placeholder="Start" min="0" class="slice-input">
+                        <span>to</span>
+                        <input type="number" name="end" placeholder="End" class="slice-input">
+                        <button type="submit" name="slice_data" class="btn operation-btn">Slice</button>
+                    </div>
+                </div>
+
+                <div class="operation-group">
+                    <button type="submit" name="reset" class="btn reset-btn">Reset to Original</button>
+                </div>
+            </div>
+        </form>
+
+        {% if results %}
+        <div class="results-panel">
+            <h3>Operation Results:</h3>
+            
+            {% if results.message %}
+                <div class="alert success">
+                    {{ results.message }}
+                </div>
+            {% endif %}
+            
+            {% if results.error %}
+                <div class="alert error">
+                    {{ results.error }}
+                </div>
+            {% endif %}
+
+            <div class="operation-results">
+                {% if results.first is defined %}
+                    <p><span class="result-label">First Element:</span> {{ results.first }}</p>
+                {% endif %}
+                
+                {% if results.last is defined %}
+                    <p><span class="result-label">Last Element:</span> {{ results.last }}</p>
+                {% endif %}
+                
+                {% if results.max is defined %}
+                    <p><span class="result-label">Maximum Value:</span> {{ results.max }}</p>
+                {% endif %}
+                
+                {% if results.min is defined %}
+                    <p><span class="result-label">Minimum Value:</span> {{ results.min }}</p>
+                {% endif %}
+                
+                {% if results.even is defined %}
+                    <p><span class="result-label">Even Numbers:</span> {{ results.even }}</p>
+                {% endif %}
+                
+                {% if results.odd is defined %}
+                    <p><span class="result-label">Odd Numbers:</span> {{ results.odd }}</p>
+                {% endif %}
+                
+                {% if results.slice is defined %}
+                    <p><span class="result-label">Slice Result:</span> {{ results.slice }}</p>
+                {% endif %}
+                
+                {% if results.reset is defined %}
+                    <div class="alert success">
+                        Array has been reset to original
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
