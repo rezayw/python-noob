@@ -30,21 +30,35 @@ A Flask web application for performing various operations on number arrays with 
 - Python 3.8+
 - pip
 
-### Setup
+## Installation
 
-1. Clone the repository:
+### 1. Clone the repository
 ```bash
 git clone https://github.com/rezayw/data-array-app.git
 cd data-array-app
+```
 
+### 2. Setup enviroment
+```bash
+# Create virtual environment
 python -m venv venv
-# Linux/Mac
-source venv/bin/activate
-# Windows
-venv\Scripts\activate
 
+# Activate environment
+# Linux/Mac:
+source venv/bin/activate
+# Windows:
+.\venv\Scripts\activate
+
+```
+### 3. Configure environment variables
+```bash
+# Copy example environment file
 cp .env.example .env
 
-FLASK_SECRET_KEY=your_super_secret_key_here
-
+# Edit the .env file (replace with your secret key)
+# FLASK_SECRET_KEY=your_super_secret_key_here
+```
+### 4. Run application
+```bash
 python app.py
+```
