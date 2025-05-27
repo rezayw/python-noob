@@ -1,0 +1,12 @@
+The following number is less than 5
+0
+The following number is less than 5
+1
+The following number is less than 5
+2
+The following number is less than 5
+3
+The following number is less than 5
+4
+The following number is greater than or equal to 5
+5
